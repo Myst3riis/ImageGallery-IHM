@@ -130,8 +130,6 @@ namespace TP2
 
         public void imgUp()
         {
-            //ConsoleDisp();
-
             int val1 = imgSelected.Index;
             if (val1 < nbImages-1) {
                 int val2 = getPhotoByIndex(imgSelected.Index + 1).Index;
@@ -139,16 +137,12 @@ namespace TP2
                 getPhotoByIndex(imgSelected.Index + 1).Index = val1;
                 imgSelected.Index = val2;
             }
-            /*
-            Console.WriteLine("UP =>");
-            ConsoleDisp();
-            */
+         
             this.Invalidate();
         }
 
         public void imgDown()
         {
-            //ConsoleDisp();
             int val1 = imgSelected.Index;
             if (val1 > 0)
             {
@@ -157,21 +151,8 @@ namespace TP2
                 getPhotoByIndex(imgSelected.Index - 1).Index = val1;
                 imgSelected.Index = val2;
             }
-            /*
-            Console.WriteLine("DOWN =>");
-            ConsoleDisp();
-            */
             this.Invalidate();
         }
-        
-        /*
-        private void ConsoleDisp (){
-            foreach(Photo img in photos)
-            {
-                Console.WriteLine(img.toString());
-            }
-        }
-        */
 
         private Photo getPhotoByIndex(int index)
         {

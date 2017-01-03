@@ -7,3 +7,6 @@ C:\PERSO\ENSISA\A2\Cours\IHM\TP\TP2\TP2\obj\Debug\TP2.csproj.GenerateResource.Ca
 C:\PERSO\ENSISA\A2\Cours\IHM\TP\TP2\TP2\obj\Debug\TP2.exe
 C:\PERSO\ENSISA\A2\Cours\IHM\TP\TP2\TP2\obj\Debug\TP2.pdb
 C:\PERSO\ENSISA\A2\Cours\IHM\TP\TP2\TP2\obj\Debug\TP2.csprojResolveAssemblyReference.cache
+C:\PERSO\ENSISA\A2\Cours\IHM\TP\ImageGallery-IHM\TP2\bin\Debug\TP2.exe.config
+C:\PERSO\ENSISA\A2\Cours\IHM\TP\ImageGallery-IHM\TP2\obj\Debug\TP2.exe
+C:\PERSO\ENSISA\A2\Cours\IHM\TP\ImageGallery-IHM\TP2\obj\Debug\TP2.pdb
