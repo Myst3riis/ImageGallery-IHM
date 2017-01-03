@@ -46,9 +46,20 @@ namespace TP2
             nbImages += 1;
             photos.Add(photo);
         }
-        
-       
-        
+
+        public void displayImage(Bitmap image)
+        {
+            Rectangle coord = new Rectangle();
+            coord.X = lastX;
+            coord.Y = lastY;
+            coord.Height = (image).Height;
+            coord.Width = (image).Width;
+            Photo photo = new Photo(image, coord, nbImages);
+            nbImages += 1;
+            photos.Add(photo);
+        }
+
+
         public void drawImage_paint(object sender, PaintEventArgs e)
         {
             if (this.photos.Count > 0)
@@ -58,7 +69,7 @@ namespace TP2
                 {
                     if (img.Index < min) min = img.Index;
                 }
-                    for (int i = min; i < photos.Count; i++)
+                for (int i = min; i < photos.Count; i++)
                 {
 
                     if (photos[i] != null)
@@ -72,11 +83,12 @@ namespace TP2
                     }
                 }
                 X = Y = 0;
-            }
-            if (isSelected)
-            {
-                Pen pen = new Pen(Color.Red, 4);
-                e.Graphics.DrawRectangle(pen, photos[selectedPhotoIndex].Rect);
+
+                if (isSelected)
+                {
+                    Pen pen = new Pen(Color.Red, 4);
+                    e.Graphics.DrawRectangle(pen, photos[selectedPhotoIndex].Rect);
+                }
             }
         }
 
@@ -178,6 +190,24 @@ namespace TP2
             }
             selectedPhotoIndex = 0;
             imgSelected = getPhotoByIndex(0);
+            this.Invalidate();
+        }
+
+        public void copy()
+        {
+            Clipboard.SetImage(imgSelected.Image);
+        }
+
+        public void cut()
+        {
+            copy();
+            suppr();
+        }
+
+        public void paste()
+        {
+            Bitmap image = (Bitmap)Clipboard.GetImage();
+            displayImage(image);
             this.Invalidate();
         }
 

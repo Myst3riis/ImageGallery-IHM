@@ -62,17 +62,17 @@ namespace TP2
 
         private void couperToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            drawImage1.cut();
         }
 
         private void copierToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            drawImage1.copy();
         }
 
         private void collerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            drawImage1.paste();
         }
 
         private void supprimerLimageToolStripMenuItem_Click(object sender, EventArgs e)
