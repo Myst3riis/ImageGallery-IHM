@@ -40,7 +40,9 @@
             this.copierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.collerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.supprimerLimageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.drawImage1 = new TP2.DrawImage();
+            this.annulerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rétablirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.drawImage1 = new TP2.Album();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,7 +90,9 @@
             this.couperToolStripMenuItem,
             this.copierToolStripMenuItem,
             this.collerToolStripMenuItem,
-            this.supprimerLimageToolStripMenuItem});
+            this.supprimerLimageToolStripMenuItem,
+            this.annulerToolStripMenuItem,
+            this.rétablirToolStripMenuItem});
             this.editionToolStripMenuItem.Name = "editionToolStripMenuItem";
             this.editionToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.editionToolStripMenuItem.Text = "Edition";
@@ -100,7 +104,7 @@
             this.avancerToolStripMenuItem,
             this.reculerToolStripMenuItem});
             this.dispositionToolStripMenuItem.Name = "dispositionToolStripMenuItem";
-            this.dispositionToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.dispositionToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.dispositionToolStripMenuItem.Text = "Disposition";
             // 
             // avancerToolStripMenuItem
@@ -123,7 +127,7 @@
             // 
             this.couperToolStripMenuItem.Name = "couperToolStripMenuItem";
             this.couperToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.couperToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.couperToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.couperToolStripMenuItem.Text = "Couper";
             this.couperToolStripMenuItem.Click += new System.EventHandler(this.couperToolStripMenuItem_Click);
             // 
@@ -131,7 +135,7 @@
             // 
             this.copierToolStripMenuItem.Name = "copierToolStripMenuItem";
             this.copierToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.copierToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.copierToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.copierToolStripMenuItem.Text = "Copier";
             this.copierToolStripMenuItem.Click += new System.EventHandler(this.copierToolStripMenuItem_Click);
             // 
@@ -139,7 +143,7 @@
             // 
             this.collerToolStripMenuItem.Name = "collerToolStripMenuItem";
             this.collerToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.collerToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.collerToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.collerToolStripMenuItem.Text = "Coller";
             this.collerToolStripMenuItem.Click += new System.EventHandler(this.collerToolStripMenuItem_Click);
             // 
@@ -147,9 +151,25 @@
             // 
             this.supprimerLimageToolStripMenuItem.Name = "supprimerLimageToolStripMenuItem";
             this.supprimerLimageToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.supprimerLimageToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.supprimerLimageToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.supprimerLimageToolStripMenuItem.Text = "Supprimer l\'image";
             this.supprimerLimageToolStripMenuItem.Click += new System.EventHandler(this.supprimerLimageToolStripMenuItem_Click);
+            // 
+            // annulerToolStripMenuItem
+            // 
+            this.annulerToolStripMenuItem.Name = "annulerToolStripMenuItem";
+            this.annulerToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
+            this.annulerToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.annulerToolStripMenuItem.Text = "Annuler";
+            this.annulerToolStripMenuItem.Click += new System.EventHandler(this.annulerToolStripMenuItem_Click);
+            // 
+            // rétablirToolStripMenuItem
+            // 
+            this.rétablirToolStripMenuItem.Name = "rétablirToolStripMenuItem";
+            this.rétablirToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Z)));
+            this.rétablirToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.rétablirToolStripMenuItem.Text = "Rétablir";
+            this.rétablirToolStripMenuItem.Click += new System.EventHandler(this.rétablirToolStripMenuItem_Click);
             // 
             // drawImage1
             // 
@@ -183,7 +203,7 @@
         private System.Windows.Forms.ToolStripMenuItem fichierToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quitterToolStripMenuItem;
-        private DrawImage drawImage1;
+        private Album drawImage1;
         private System.Windows.Forms.ToolStripMenuItem importerImageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dispositionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem avancerToolStripMenuItem;
@@ -192,6 +212,8 @@
         private System.Windows.Forms.ToolStripMenuItem copierToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem collerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem supprimerLimageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem annulerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rétablirToolStripMenuItem;
     }
 }
 

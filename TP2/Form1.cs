@@ -7,13 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TP2015;
 
 namespace TP2
 {
     public partial class Form1 : Form
     {
+        private UndoRedoHistory hist;
+
         public Form1()
         {
+            hist = new UndoRedoHistory();
             InitializeComponent();
         }
 
@@ -77,7 +81,19 @@ namespace TP2
 
         private void supprimerLimageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            drawImage1.suppr();
+            drawImage1.delete();
+        }
+
+        private void annulerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (hist.CanUndo())
+                hist.Undo();
+        }
+
+        private void rétablirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (hist.CanRedo())
+                hist.Redo();
         }
     }
 }

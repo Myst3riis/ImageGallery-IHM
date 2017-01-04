@@ -16,3 +16,11 @@ C:\PERSO\ENSISA\A2\Cours\IHM\TP\ImageGallery-IHM\TP2\obj\Debug\TP2.csprojResolve
 C:\PERSO\ENSISA\A2\Cours\IHM\TP\ImageGallery-IHM\TP2\obj\Debug\TP2.Form1.resources
 C:\PERSO\ENSISA\A2\Cours\IHM\TP\ImageGallery-IHM\TP2\obj\Debug\TP2.Properties.Resources.resources
 C:\PERSO\ENSISA\A2\Cours\IHM\TP\ImageGallery-IHM\TP2\obj\Debug\TP2.csproj.GenerateResource.Cache
+C:\Users\thoma\Documents\GitHub\ImageGallery-IHM\TP2\bin\Debug\TP2.exe.config
+C:\Users\thoma\Documents\GitHub\ImageGallery-IHM\TP2\bin\Debug\TP2.exe
+C:\Users\thoma\Documents\GitHub\ImageGallery-IHM\TP2\bin\Debug\TP2.pdb
+C:\Users\thoma\Documents\GitHub\ImageGallery-IHM\TP2\obj\Debug\TP2.Form1.resources
+C:\Users\thoma\Documents\GitHub\ImageGallery-IHM\TP2\obj\Debug\TP2.Properties.Resources.resources
+C:\Users\thoma\Documents\GitHub\ImageGallery-IHM\TP2\obj\Debug\TP2.csproj.GenerateResource.Cache
+C:\Users\thoma\Documents\GitHub\ImageGallery-IHM\TP2\obj\Debug\TP2.exe
+C:\Users\thoma\Documents\GitHub\ImageGallery-IHM\TP2\obj\Debug\TP2.pdb

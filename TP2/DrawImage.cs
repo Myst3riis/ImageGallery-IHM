@@ -9,22 +9,19 @@ using System.Windows.Forms;
 
 namespace TP2
 {
-    class DrawImage : Panel
+    class Album : Panel
     {
         private int X = 0;
         private int Y = 0;
         private int lastX = 0;
         private int lastY = 0;
         private List<Photo> photos;
-        private int selectedPhotoIndex = 0;
         private bool isSelected = false;
         private bool mouseIsDown = false;
         private Photo imgSelected = null;
-
-        private int nbImages = 0;
         private Point oldPoint;
 
-        public DrawImage()
+        public Album()
         {
             this.Paint += drawImage_paint;
             this.MouseUp += mouseUp;
@@ -42,8 +39,7 @@ namespace TP2
             coord.Y = lastY;
             coord.Height = ((Bitmap)image).Height;
             coord.Width = ((Bitmap)image).Width;
-            Photo photo = new Photo(image, coord, nbImages);
-            nbImages += 1;
+            Photo photo = new Photo(image, coord, photos.Count);
             photos.Add(photo);
         }
 
@@ -54,28 +50,26 @@ namespace TP2
             coord.Y = lastY;
             coord.Height = (image).Height;
             coord.Width = (image).Width;
-            Photo photo = new Photo(image, coord, nbImages);
-            nbImages += 1;
+            Photo photo = new Photo(image, coord, photos.Count);
             photos.Add(photo);
         }
 
 
         public void drawImage_paint(object sender, PaintEventArgs e)
         {
-            if (this.photos.Count > 0)
+            if (photos.Count > 0)
             {
                 int min = 0;
                 foreach (Photo img in photos)
                 {
-                    if (img.Index < min) min = img.Index;
+                    if (img.Index < min)
+                        min = img.Index;
                 }
                 for (int i = min; i < photos.Count; i++)
                 {
-
-                    if (photos[i] != null)
+                    Photo photoToDisplay = getPhotoByIndex(i);
+                    if (photoToDisplay != null)
                     {
-                        Photo photoToDisplay = getPhotoByIndex(i);
-
                         e.Graphics.DrawImage(photoToDisplay.Image, photoToDisplay.X, photoToDisplay.Y);
                         X = Y += 10;
                         lastX = X;
@@ -83,17 +77,16 @@ namespace TP2
                     }
                 }
                 X = Y = 0;
-
-                if (isSelected)
+                if (isSelected && imgSelected != null)
                 {
                     Pen pen = new Pen(Color.Red, 4);
-                    e.Graphics.DrawRectangle(pen, photos[selectedPhotoIndex].Rect);
+                    e.Graphics.DrawRectangle(pen, imgSelected.Rect);
                 }
             }
         }
 
-        private void mouseDown(Object sender, MouseEventArgs e) 
-        { 
+        private void mouseDown(Object sender, MouseEventArgs e)
+        {
             mouseClick(sender, e);
         }
 
@@ -104,13 +97,12 @@ namespace TP2
             {
                 if (getPhotoByIndex(i) != null)
                 {
-                    if (photos[i].contains(e.Location))
+                    if (getPhotoByIndex(i).contains(e.Location))
                     {
                         isSelected = true;
                         imgSelected = getPhotoByIndex(i);
-                        selectedPhotoIndex = i;
                         oldPoint = e.Location;
-                        this.Invalidate();
+                        Invalidate();
                         break;
                     }
                     else
@@ -120,7 +112,7 @@ namespace TP2
                     }
                 }
             }
-            this.Invalidate();
+            Invalidate();
         }
 
         private void mouseMove(Object sender, MouseEventArgs e)
@@ -131,7 +123,7 @@ namespace TP2
                 imgSelected.Y = imgSelected.Y + e.Y - oldPoint.Y;
                 oldPoint = e.Location;
                 this.Invalidate();
-            } 
+            }
         }
 
         private void mouseUp(Object sender, MouseEventArgs e)
@@ -143,13 +135,13 @@ namespace TP2
         public void imgUp()
         {
             int val1 = imgSelected.Index;
-            if (val1 < nbImages-1) {
+            if (val1 < photos.Count - 1)
+            {
                 int val2 = getPhotoByIndex(imgSelected.Index + 1).Index;
                 int valTemp = getPhotoByIndex(imgSelected.Index + 1).Index;
                 getPhotoByIndex(imgSelected.Index + 1).Index = val1;
                 imgSelected.Index = val2;
             }
-         
             this.Invalidate();
         }
 
@@ -168,28 +160,29 @@ namespace TP2
 
         private Photo getPhotoByIndex(int index)
         {
-            Photo theGoodOne=null;
-            foreach(Photo photo in photos)
-            {
-                if (photo.Index == index) theGoodOne = photo;
-            }
-            return theGoodOne;
-        }
-
-        public void suppr()
-        {
-            int temp = selectedPhotoIndex;
-            photos.Remove(imgSelected);
-            nbImages -= 1;
             foreach (Photo photo in photos)
             {
-                if(photo.Index > temp)
+                if (photo.Index == index)
+                    return photo;
+            }
+            return null;
+        }
+
+        public void delete()
+        {
+            int temp = imgSelected.Index;
+
+            photos.Remove(imgSelected);
+
+            foreach (Photo photo in photos)
+            {
+                if (photo.Index > temp)
                 {
                     photo.Index -= 1;
                 }
             }
-            selectedPhotoIndex = 0;
-            imgSelected = getPhotoByIndex(0);
+            imgSelected = null;
+            isSelected = false;
             this.Invalidate();
         }
 
@@ -201,7 +194,7 @@ namespace TP2
         public void cut()
         {
             copy();
-            suppr();
+            delete();
         }
 
         public void paste()
@@ -209,6 +202,11 @@ namespace TP2
             Bitmap image = (Bitmap)Clipboard.GetImage();
             displayImage(image);
             this.Invalidate();
+        }
+
+        public void DeepCopyFrom(Album album)
+        {
+            // TODO
         }
 
     }
