@@ -20,6 +20,7 @@ namespace TP2
         private bool mouseIsDown = false;
         private Photo imgSelected = null;
         private Point oldPoint;
+        public Form1 form;
 
         public Album()
         {
@@ -41,6 +42,12 @@ namespace TP2
             coord.Width = ((Bitmap)image).Width;
             Photo photo = new Photo(image, coord, photos.Count);
             photos.Add(photo);
+
+            if (isSelected)
+            {
+                enableDisableButtons();
+            }
+
         }
 
         public void displayImage(Bitmap image)
@@ -52,6 +59,10 @@ namespace TP2
             coord.Width = (image).Width;
             Photo photo = new Photo(image, coord, photos.Count);
             photos.Add(photo);
+            if (isSelected)
+            {
+                enableDisableButtons();
+            }
         }
 
 
@@ -65,23 +76,26 @@ namespace TP2
                     if (img.Index < min)
                         min = img.Index;
                 }
+                
                 for (int i = min; i < photos.Count; i++)
                 {
                     Photo photoToDisplay = getPhotoByIndex(i);
                     if (photoToDisplay != null)
                     {
+                        
                         e.Graphics.DrawImage(photoToDisplay.Image, photoToDisplay.X, photoToDisplay.Y);
                         X = Y += 10;
                         lastX = X;
                         lastY = Y;
+                        if (isSelected && imgSelected == photoToDisplay)
+                        {
+                            Pen pen = new Pen(Color.Red, 4);
+                            e.Graphics.DrawRectangle(pen, imgSelected.Rect);
+                        }
                     }
                 }
                 X = Y = 0;
-                if (isSelected && imgSelected != null)
-                {
-                    Pen pen = new Pen(Color.Red, 4);
-                    e.Graphics.DrawRectangle(pen, imgSelected.Rect);
-                }
+                
             }
         }
 
@@ -92,27 +106,38 @@ namespace TP2
 
         private void mouseClick(Object sender, MouseEventArgs e)
         {
-            mouseIsDown = true;
-            for (int i = photos.Count - 1; i >= 0; i--)
+            switch (MouseButtons)  
             {
-                if (getPhotoByIndex(i) != null)
-                {
-                    if (getPhotoByIndex(i).contains(e.Location))
+                case MouseButtons.Left:
+                    mouseIsDown = true;
+                    for (int i = photos.Count - 1; i >= 0; i--)
                     {
-                        isSelected = true;
-                        imgSelected = getPhotoByIndex(i);
-                        oldPoint = e.Location;
-                        Invalidate();
-                        break;
+                        if (getPhotoByIndex(i) != null)
+                        {
+                            if (getPhotoByIndex(i).contains(e.Location))
+                            {
+                                isSelected = true;
+                                form.enableEditButtons();
+                                imgSelected = getPhotoByIndex(i);
+                                oldPoint = e.Location;
+                                Invalidate();
+                                enableDisableButtons();
+                                break;
+                            }
+                            else
+                            {
+                                imgSelected = null;
+                                isSelected = false;
+                                form.disableEditButtons();
+                            }
+                        }
                     }
-                    else
-                    {
-                        imgSelected = null;
-                        isSelected = false;
-                    }
-                }
+                    Invalidate();
+                    break;
+                case MouseButtons.Right:
+                    break;
             }
-            Invalidate();
+            
         }
 
         private void mouseMove(Object sender, MouseEventArgs e)
@@ -128,7 +153,9 @@ namespace TP2
 
         private void mouseUp(Object sender, MouseEventArgs e)
         {
-            mouseIsDown = false;
+            
+                    mouseIsDown = false;
+                   
         }
 
 
@@ -142,6 +169,7 @@ namespace TP2
                 getPhotoByIndex(imgSelected.Index + 1).Index = val1;
                 imgSelected.Index = val2;
             }
+            enableDisableButtons();
             this.Invalidate();
         }
 
@@ -155,6 +183,7 @@ namespace TP2
                 getPhotoByIndex(imgSelected.Index - 1).Index = val1;
                 imgSelected.Index = val2;
             }
+            enableDisableButtons();
             this.Invalidate();
         }
 
@@ -183,6 +212,7 @@ namespace TP2
             }
             imgSelected = null;
             isSelected = false;
+            form.disableEditButtons();
             this.Invalidate();
         }
 
@@ -207,6 +237,14 @@ namespace TP2
         public void DeepCopyFrom(Album album)
         {
             // TODO
+        }
+
+        private void enableDisableButtons()
+        {
+            if (imgSelected.Index < photos.Count - 1) form.enableAvancer();
+            else form.disableAvancer();
+            if (imgSelected.Index > 0) form.enableReculer();
+            else form.disableReculer();
         }
 
     }

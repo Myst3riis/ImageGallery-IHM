@@ -19,6 +19,7 @@ namespace TP2
         {
             hist = new UndoRedoHistory();
             InitializeComponent();
+            album1.form = this;
         }
 
         private void fichierToolStripMenuItem_Click(object sender, EventArgs e)
@@ -36,11 +37,6 @@ namespace TP2
             Application.Exit();
         }
 
-        private void ajouterImageToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void importerImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
@@ -48,40 +44,44 @@ namespace TP2
             openFileDialog1.Title = "Select a Image";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                drawImage1.displayImage(openFileDialog1.FileName);
-                drawImage1.Invalidate();
+                album1.displayImage(openFileDialog1.FileName);
+                album1.Invalidate();
+
+                annulerToolStripMenuItem.Enabled = true;
+                rétablirToolStripMenuItem.Enabled = true;
+
             }
 
         }
 
         private void avancerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            drawImage1.imgUp();
+            album1.imgUp();
         }
 
         private void reculerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            drawImage1.imgDown();
+            album1.imgDown();
         }
 
         private void couperToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            drawImage1.cut();
+            album1.cut();
         }
 
         private void copierToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            drawImage1.copy();
+            album1.copy();
         }
 
         private void collerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            drawImage1.paste();
+            album1.paste();
         }
 
         private void supprimerLimageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            drawImage1.delete();
+            album1.delete();
         }
 
         private void annulerToolStripMenuItem_Click(object sender, EventArgs e)
@@ -94,6 +94,50 @@ namespace TP2
         {
             if (hist.CanRedo())
                 hist.Redo();
+        }
+
+        private void avancerToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            album1.imgUp();
+        }
+
+        private void reculerToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            album1.imgDown();
+        }
+
+        public void enableEditButtons()
+        {
+            couperToolStripMenuItem.Enabled = true;
+            copierToolStripMenuItem.Enabled = true;
+            supprimerLimageToolStripMenuItem.Enabled = true;
+        }
+
+        public void disableEditButtons()
+        {
+            couperToolStripMenuItem.Enabled = false;
+            copierToolStripMenuItem.Enabled = false;
+            supprimerLimageToolStripMenuItem.Enabled = false;
+        }
+
+
+        public void enableAvancer()
+        {
+            avancerToolStripMenuItem1.Enabled = true;
+        }
+
+        public void disableAvancer()
+        {
+            avancerToolStripMenuItem1.Enabled = false;
+        }
+        public void enableReculer()
+        {
+            reculerToolStripMenuItem1.Enabled = true;
+        }
+
+        public void disableReculer()
+        {
+            reculerToolStripMenuItem1.Enabled = false;
         }
     }
 }
